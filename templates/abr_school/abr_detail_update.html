@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}Школа АБР{% endblock title %}
+
+{% block active_abr_school_detail %}active{% endblock active_abr_school_detail %}
+
+{% block zagl %}Школа АБР. Изменить курс {% endblock zagl %}
+
+{% block content %}
+
+    <form method="POST"> {% csrf_token %}
+
+    {{ form.title|bootstrap_horizontal }}
+    {{ form.coach|bootstrap_horizontal }}
+    {{ form.price|bootstrap_horizontal }}
+    {{ form.price_month|bootstrap_horizontal }}
+    {{ form.discount|bootstrap_horizontal }}
+    {{ form.mode|bootstrap_horizontal }}
+    {{ form.time_to_class|bootstrap_horizontal }}
+    {{ form.date_to_start|bootstrap_horizontal }}
+    {{ form.count_students|bootstrap_horizontal }}
+
+     <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+    <br>
+    <a href="{% url 'abr_school_detail' %}"><button type="button" class="btn btn-outline-secondary">Назад без сохранения</button></a>
+
+
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}Школа Графики{% endblock title %}
+
+{% block active_graph_school_detail %}active{% endblock active_graph_school_detail %}
+
+{% block zagl %}Школа Графики. Удалить курс {% endblock zagl %}
+
+{% block content %}
+
+<form method="POST"> {% csrf_token %}
+
+     <button type="submit" class="btn btn-primary">Удалить</button>
+</form>
+    <br>
+    <a href="{% url 'graph_school_detail' %}"><button type="button" class="btn btn-outline-secondary">Назад без сохранения</button></a>
+
+
+{% endblock content %}

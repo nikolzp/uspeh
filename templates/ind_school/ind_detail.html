@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Индивидуальные занятия{% endblock title %}
+
+{% block active_ind_school_detail %}active{% endblock active_ind_school_detail %}
+
+{% block zagl %}Индивидуальные занятия{% endblock zagl %}
+
+{% block content %}
+<a href="{% url 'ind_school_create_det' %}"><button type="button" class="btn btn-outline-secondary">Добавить курс</button></a>
+<br><br>
+
+        <table class ="table table-striped">
+        <th class="titl-tabl alert alert-dark">Название</th>
+        <th class="titl-tabl alert alert-dark">Препод</th>
+        <th class="titl-tabl alert alert-dark">Цена за 1 ак/ч (45 мин)</th>
+        <th class="titl-tabl alert alert-dark">Желательное кол часов</th>
+        <th class="titl-tabl alert alert-dark">Изменить</th>
+        <th class="titl-tabl alert alert-dark">Удалить</th>
+
+
+        {% for detail in data %}
+
+        <tr class="">
+            <td>{{detail.title}}</td>
+            <td class="prepod-in-tabl" >{% for coach in detail.coach.all %}
+            <span  data-toggle="tooltip" data-placement="top"
+                title="{{ coach.name }}
+{{ coach.phone }}
+{{ coach.description }}">
+                {{coach.surname}}</span>
+            {% endfor %}</td>
+            <td>{{detail.price}} грн</td>
+            <td>{{detail.des_hours}}</td>
+            <td class="links-tabl"><a href="{% url 'ind_school_update_det' detail.pk %}">Изм.</a></td>
+            <td class="links-tabl"><a href="{% url 'ind_school_delete_det' detail.pk %}">Удал.</a></td>
+        </tr>
+        {% endfor %}
+</table>
+
+{% endblock content %}
+
+

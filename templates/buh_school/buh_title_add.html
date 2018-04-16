@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+
+{% block title %}Школа Бухгалтерии{% endblock title %}
+
+{% block active_buh_school_detail %}active{% endblock active_buh_school_detail %}
+
+{% block zagl %}Школа Бухгалтерии. Добавить Тему курса {% endblock zagl %}
+
+{% block content %}
+
+
+<form method="POST"> {% csrf_token %}
+
+    {{ form.name_cours|bootstrap }}
+    <br>
+    {{ form.description|bootstrap }}
+
+  <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+<br>
+<a href="{% url 'buh_school_create_det' %}"><button type="button" class="btn btn-outline-secondary">Назад без сохранения</button></a>
+
+
+{% endblock content %}

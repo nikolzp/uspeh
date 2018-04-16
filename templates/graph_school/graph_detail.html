@@ -1,0 +1,56 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Школа Графики{% endblock title %}
+
+{% block active_graph_school_detail %}active{% endblock active_graph_school_detail %}
+
+{% block zagl %}Школа Графики{% endblock zagl %}
+
+{% block content %}
+<a href="{% url 'graph_school_create_det' %}"><button type="button" class="btn btn-outline-secondary">Добавить курс</button></a>
+<br>
+
+   {% for title in data %}
+        <table class ="table table-striped"><br>
+        <h4 class="text-info">{{title.name_cours}} <span><a class="links-tabl" href="{% url 'graph_school_update_title' title.pk %}">Изм.</a></span></h4>
+        <th class="titl-tabl alert alert-dark">Описание</th>
+        <th class="titl-tabl alert alert-dark">Режим занятий</th>
+        <th class="titl-tabl alert alert-dark">Цена закурс</th>
+        <th class="titl-tabl alert alert-dark">Цена месяц</th>
+        <th class="titl-tabl alert alert-dark">Скид- ка</th>
+        <th class="titl-tabl alert alert-dark">Старт занятий</th>
+        <th class="titl-tabl alert alert-dark">Время занятий</th>
+        <th class="titl-tabl alert alert-dark">Препод</th>
+        <th class="titl-tabl alert alert-dark">Кол. зап</th>
+        <th class="titl-tabl alert alert-dark">Изм</th>
+        <th class="titl-tabl alert alert-dark">Удал</th>
+
+
+        <tr class="">
+            <td class="descr-cours" rowspan="20">{{title.description}}</td>
+         {% for detail in title.design_title.all %}
+            <td>{{detail.mode}}</td>
+            <td>{{detail.price}} грн</td>
+            <td>{{detail.price_month}} грн</td>
+            <td>{{detail.discount}}%</td>
+            <td>{{detail.date_to_start}}</td>
+            <td>{{detail.time_to_class}}</td>
+            <td class="prepod-in-tabl" >{% for coach in detail.coach.all %}
+            <span  data-toggle="tooltip" data-placement="top"
+                title="{{ coach.name }}
+{{ coach.phone }}
+{{ coach.description }}">
+                {{coach.surname}}</span>
+            {% endfor %}</td>
+            <td>{{detail.count_students}}</td>
+            <td class="links-tabl"><a href="{% url 'graph_school_update_det' detail.pk %}">Изм.</a></td>
+            <td class="links-tabl"><a href="{% url 'graph_school_delete_det' detail.pk %}">Удал.</a></td>
+        </tr>
+        {% endfor %}
+   {% endfor %}
+</table>
+
+{% endblock content %}
+
+
