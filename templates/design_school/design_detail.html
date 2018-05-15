@@ -25,6 +25,7 @@
         <th class="titl-tabl alert alert-dark">Время занятий</th>
         <th class="titl-tabl alert alert-dark">Препод</th>
         <th class="titl-tabl alert alert-dark">Кол. зап</th>
+       <th class="titl-tabl alert alert-dark">зап. раб.</th>
         {% if user.username == 'admin' %}
         <th class="titl-tabl alert alert-dark">Изм</th>
         <th class="titl-tabl alert alert-dark">Удал</th>
@@ -48,6 +49,7 @@
                 {{coach.surname}}</span>
             {% endfor %}</td>
             <td>{{detail.count_students}}</td>
+            <td>{{detail.set_or_work}}</td>
              {% if user.username == 'admin' %}
             <td class="links-tabl"><a href="{% url 'design_school_update_det' detail.pk %}">Изм.</a></td>
             <td class="links-tabl"><a href="{% url 'design_school_delete_det' detail.pk %}">Удал.</a></td>

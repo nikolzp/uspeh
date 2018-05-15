@@ -22,9 +22,10 @@ class DesignDetail(models.Model):
     time_to_class = models.CharField(max_length=40, null=True, blank=True, default='-', verbose_name='Время занятий') # время занятий (18:00-20:00)
     date_to_start = models.CharField(max_length=40, null=True, blank=True, default='-', verbose_name='Дата старта занятий') #дата старта занятий
     count_students = models.IntegerField(null=True, blank=True, default=0, verbose_name='Количество записанных')
+    set_or_work = models.CharField(max_length=1, choices=(('s', 'собирается'),('w', 'работает')), verbose_name='позиция')
 
     def __str__(self):
-        info = '{}грн. курс || {}грн. месяц || {} || {} || {}дата старта'.format(self.price, self.price_month,
+        info = '{}, {}грн. курс || {}грн. месяц || {} || {} || {}дата старта'.format(self.title.name_cours,self.price, self.price_month,
                                                                                  self.mode,
                                                                                  self.time_to_class, self.date_to_start)
         return info
@@ -44,5 +45,22 @@ class DesignTitle(models.Model):
         return reverse('design_school_create_det')
 
 
-class DesignSetGroups(models.Model):
-    pass
+class DesignSetGetGroups(models.Model):
+    info_course = models.ForeignKey("DesignDetail", null=True, default=True, on_delete=models.CASCADE, related_name='design_detail', verbose_name='инфо курса')
+    fio = models.CharField(max_length=150, blank=True, default=' ', verbose_name='ФИО')
+    date_add = models.CharField(max_length=100, blank=True, default=' ', verbose_name='Дата записи')
+    phone = models.CharField(max_length=20, blank=True, default=' ', verbose_name='Телефон')
+    email = models.CharField(max_length=50, blank=True, default=' ', verbose_name='Емейл')
+    discount = models.CharField(max_length=40, blank=True, default=' ', verbose_name='Скидка')
+    note = models.CharField(max_length=100, blank=True, default=' ', verbose_name='Примечание')
+
+    def __str__(self):
+        return self.fio
+
+    def get_absolute_url(self):
+        return reverse('design_school_detail')
+
+
+class Manth(models.Model):
+    manth = models.CharField(max_length=20, blank=True, default=' ', verbose_name='Месяц')
+

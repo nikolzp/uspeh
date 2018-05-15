@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}Школа дизайа{% endblock title %}
+
+{% block active_design_school_detail %}active{% endblock active_design_school_detail %}
+
+{% block zagl %}Школа дизайа{% endblock zagl %}
+
+{% block content %}
+        {{ design_det }}<br>
+
+{#{{ design_set_get.fio }}#}
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ design_set_get|bootstrap_horizontal }}
+
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+
+
+
+
+{% endblock content %}
+
+
