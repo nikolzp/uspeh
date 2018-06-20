@@ -2,6 +2,7 @@
 
 work wersion https://uspeh.herokuapp.com/
 --
-login admin
+login *admin*
 --
-pass adminadmin
+pass *adminadmin*
+--
