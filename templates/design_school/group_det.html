@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %}Школа дизайа{% endblock title %}
+
+{% block active_design_school_detail %}active{% endblock active_design_school_detail %}
+
+{% block zagl %}Школа дизайа{% endblock zagl %}
+
+{% block content %}
+        {{ design_det }}<br>
+
+{#{{ group.as_p }}#}
+
+    {% for a in group %}
+        <p>{{ a.fio }}</p>
+        <p>{{ a.info_course_id }}</p>
+        <br>
+    {% endfor %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+
+
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+
+
+
+
+{% endblock content %}
+
+

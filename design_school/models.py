@@ -11,7 +11,6 @@ class Coach(models.Model):
     def __str__(self):
         return self.surname
 
-
 class DesignDetail(models.Model):
     title = models.ForeignKey("DesignTitle", null=True, default=True, on_delete=models.CASCADE, related_name='design_title', verbose_name='Имя курса')
     coach = models.ManyToManyField("Coach", blank=True, null=True, default='-', related_name='coachs', verbose_name='Преподаватель')

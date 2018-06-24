@@ -43,13 +43,6 @@ class DesignSchoolDetailDeleteView(DeleteView):
     success_url = reverse_lazy('design_school_detail')
 
 
-# class Group(UpdateView):
-#     model = DesignSetGetGroups
-#     fields = '__all__'
-#     template_name = 'design_school/group.html'
-#     success_url = reverse_lazy('design_school_detail')
-
-
 def group(request, pk):
     edit = DesignSetGetGroups.objects.get(id=pk)
     det = DesignDetail.objects.get(design_detail=pk)
@@ -66,6 +59,19 @@ def group(request, pk):
         design_det = DesignDetail.objects.get(design_detail=pk)
     return render(request, 'design_school/group.html', {'design_det': design_det, 'design_set_get': design_set_get})
 
+
+class DesignSchoolGroupDetView(ListView):
+    model = DesignSetGetGroups
+    fields = ('info_course', 'fio', 'date_add', 'phone', 'email', 'discount', 'note')
+    template_name = 'design_school/group_det.html'
+    context_object_name = 'group'
+
+    def get_queryset(self):
+        a = self.request.GET.get('info_course_id')
+        design_det = DesignSetGetGroups.objects.all()
+        print(a)
+
+        return design_det
 
 
 

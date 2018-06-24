@@ -29,12 +29,13 @@
         {% if user.username == 'admin' %}
         <th class="titl-tabl alert alert-dark">Изм</th>
         <th class="titl-tabl alert alert-dark">Удал</th>
+        <th class="titl-tabl alert alert-dark">Записать</th>
        {% endif %}
 
 
         <tr class="">
             <td class="descr-cours" rowspan="20">{{title.description}}</td>
-         {% for detail in title.design_title.all %}
+        {% for detail in title.design_title.all %}
             <td>{{detail.mode}}</td>
             <td>{{detail.price}} грн</td>
             <td>{{detail.price_month}} грн</td>
@@ -47,12 +48,14 @@
 {{ coach.phone }}
 {{ coach.description }}">
                 {{coach.surname}}</span>
-            {% endfor %}</td>
+         {% endfor %}</td>
             <td>{{detail.count_students}}</td>
             <td>{{detail.set_or_work}}</td>
              {% if user.username == 'admin' %}
             <td class="links-tabl"><a href="{% url 'design_school_update_det' detail.pk %}">Изм.</a></td>
             <td class="links-tabl"><a href="{% url 'design_school_delete_det' detail.pk %}">Удал.</a></td>
+            <td class="links-tabl"><a href="{% url 'design_school_group_det' %}">add</a></td>
+
              {% endif %}
         </tr>
         {% endfor %}
